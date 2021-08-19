@@ -40,8 +40,9 @@ let squareIdBeingReplaced
     squares.forEach(square => square.addEventListener('drop', dragDrop))
 
     function dragStart() {
-        colorBeingDragged
-       console.log(this.id, 'drageStart') 
+        colorBeingDragged;
+        squareIdBeingDragged = parseInt(this.id);
+
     }
 
     function dragOver(e) {
@@ -75,7 +76,22 @@ let squareIdBeingReplaced
     function dragEnd() {
         console.log(this.id, 'dragend')
         //what is a valid move?
-        let validMoves = [squareIdBeingDragged -1, squareIdBeingDragged]
+        let validMoves = [
+            squareIdBeingDragged -1, 
+            squareIdBeingDragged -width,
+            squareIdBeingDragged +1,
+            squareIdBeingDragged + width
+        ]
+        let validMove = validMoves.includes(squareIdBeingReplaced)
+
+        if (squareIdBeingReplaced && validMove) {
+            squareIdBeingReplaced = null
+        } else if (squareIdBeingReplaced && !validMove) {
+            squares[squareIdBeingReplaced].style.backgroundColor = colorBeingReplaced
+            squares[squareIdBeingDragged].style.backgroundColor = colorBeingDragged
+        }else squares[squareIdBeingDragged].style.backgroundColor = colorBeingDragged
+
+        //minute 18.19
     }
 
 
