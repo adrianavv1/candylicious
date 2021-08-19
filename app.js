@@ -91,7 +91,17 @@ let squareIdBeingReplaced
             squares[squareIdBeingDragged].style.backgroundColor = colorBeingDragged
         }else squares[squareIdBeingDragged].style.backgroundColor = colorBeingDragged
 
-        //minute 18.19
+        
+    }
+
+    //Checking for matches
+    //check for row of three
+    function checkRowForThree() {
+        for (i=0; i < 61; i++) {
+            let rowOfThree = [i, i+1, i+2]
+            let decideColor = squares[i].style.backgroundColor
+            const isBlank = squares[i].style.backgroundColor ===''
+        }
     }
 
 
