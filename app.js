@@ -92,45 +92,45 @@ document.addEventListener("DOMContentLoaded", () => {
       let decideColor = squares[i].style.backgroundColor;
       const isBlank = squares[i].style.backgroundColor === "";
 
-      const notValid = [6, 7, 14, 15, 22, 23, 30, 31, 38, 39, 46, 47, 54, 55]
+      const notValid = [5, 6, 7, 13, 14, 15, 21, 22, 23, 29, 30, 31, 37, 38, 39, 45, 46, 47, 53, 54, 55]
       if (notValid.includes(i)) continue
 
       if (
-        rowOfThree.every(
+        rowOfFour.every(
           (index) =>
             squares[index].style.backgroundColor === decideColor && !isBlank
         )
       ) {
-        score += 3;
-        rowOfThree.forEach((index) => {
+        score += 4;
+        rowOfFour.forEach((index) => {
           squares[index].style.backgroundColor = "";
         });
       }
     }
   }
-  checkRowForThree()
+  checkRowForFour()
   
-  //check for column of three
-  function checkColumnForThree() {
+  //check for column of four
+  function checkColumnForFour() {
     for (i = 0; i < 47; i++) {
-      let columnOfThree = [i, i +width, i + width*2];
+      let columnOfFour = [i, i + width, i + width*2, i + width*3];
       let decideColor = squares[i].style.backgroundColor;
       const isBlank = squares[i].style.backgroundColor === "";
 
       if (
-        columnOfThree.every(
+        columnOfFour.every(
           (index) =>
             squares[index].style.backgroundColor === decideColor && !isBlank
         )
       ) {
-        score += 3;
-        columnOfThree.forEach((index) => {
+        score += 4;
+        columnOfFour.forEach((index) => {
           squares[index].style.backgroundColor = "";
         });
       }
     }
   }
-  checkColumnForThree()
+  checkColumnForFour()
 
   //check for row of three
   function checkRowForThree() {
@@ -181,9 +181,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
   window.setInterval(function(){
+    checkRowForFour()
+    checkColumnForFour()
       checkRowForThree()
       checkColumnForThree()
-  })
+  }, 100)
 
   //minute 23:01
 });
