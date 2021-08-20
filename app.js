@@ -106,10 +106,32 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
   checkRowForThree()
+  //check for column of three
+  function checkColumnForThree() {
+    for (i = 0; i < 47; i++) {
+      let columnOfThree = [i, i +width, i + width*2];
+      let decideColor = squares[i].style.backgroundColor;
+      const isBlank = squares[i].style.backgroundColor === "";
+
+      if (
+        columnOfThree.every(
+          (index) =>
+            squares[index].style.backgroundColor === decideColor && !isBlank
+        )
+      ) {
+        score += 3;
+        columnOfThree.forEach((index) => {
+          squares[index].style.backgroundColor = "";
+        });
+      }
+    }
+  }
+  checkColumnForThree()
 
 
   window.setInterval(function(){
       checkRowForThree()
+      checkColumnForThree()
   })
 
   //minute 23:01
